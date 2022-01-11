@@ -18,12 +18,12 @@ variable "sa_iam_roles" {
 
 
 resource "google_project_default_service_accounts" "default_sa" {
-  project = google_project.project.project_id
+  project = google_project.bootstrap_project.project_id
   action  = "DELETE"
 }
 
 resource "google_service_account" "tf_service_account" {
-  project      = google_project.project.project_id
+  project      = google_project.bootstrap_project.project_id
   account_id   = "sg-tf-sa"
   display_name = "SG Service Account for Terraform"
 }

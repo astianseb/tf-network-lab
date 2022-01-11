@@ -3,7 +3,7 @@ resource "random_id" "id" {
   prefix      = "${var.project_name}-"
 }
 
-resource "google_project" "project" {
+resource "google_project" "bootstrap_project" {
   name                = var.project_name
   project_id          = random_id.id.hex
   billing_account     = var.billing_account
@@ -21,7 +21,7 @@ resource "google_project_service" "service" {
   ])
 
   service            = each.key
-  project            = google_project.project.project_id
+  project            = google_project.bootstrap_project.project_id
   disable_on_destroy = false
 }
 
