@@ -1,0 +1,38 @@
+Assumption:
+- organization exist
+- cloud identity is configured
+- bootstrap project will be provisioned with user credentials
+- the rest of infra (lifecycle) will be provisioned with service account impersonation
+
+
+Bootstrap project:
+1. create special project under ORG for infra bootstraping ("tf-bootstrap")
+enable following API's on this project:
+    "orgpolicy.googleapis.com",
+    "cloudresourcemanager.googleapis.com",
+    "cloudbilling.googleapis.com",
+    "serviceusage.googleapis.com"
+
+2. Create service account in project "tf-bootstrap"
+    2a. Attach following roles to SA:
+        "roles/iam.serviceAccountTokenCreator",
+        "roles/iam.serviceAccountUser"
+2a. Impersonate Servcie Account (add me@sebastiang.eu as a principal)
+3. Assign following IAM roles to Service Account under ORGANIZATION:
+     "roles/resourcemanager.organizationAdmin",
+     "roles/orgpolicy.policyAdmin",
+     "roles/resourcemanager.projectCreator",
+     "roles/resourcemanager.folderCreator",
+4. Output of bootstrap terraform is SA email address which needs to be used for impersonation
+
+Lifecycle:
+1. Terraform sets up:
+    - org policy
+    - folders
+    - projects
+2. Run terraform with impersonated service account:
+        provider "google" {
+        impersonate_service_account = "sg-tf-purposes@sg-staging-337311.iam.gserviceaccount.com"
+                }
+
+                
