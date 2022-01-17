@@ -1,0 +1,10 @@
+/tf-bootstrap/.terraform/
+/tf-bootstrap/*.tfstate
+/tf-bootstrap/*.tfstate.backup
+/tf-bootstrap/*.lock.hcl
+/tf-lifecycle/.terraform/
+/tf-lifecycle/*.tfstate
+/tf-lifecycle/*.tfstate.backup
+/tf-lifecycle/*.lock.hcl
+#.gitignore
+
