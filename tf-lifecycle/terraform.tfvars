@@ -3,5 +3,4 @@ organization = {
   organization_name = "sebastiang.eu"
 }
 billing_account = "01CF89-BC7A7D-004102"
-project_name    = "tf-sandbox"
-service_account = "sg-tf-sa@sg-seed-fcb9f6c2.iam.gserviceaccount.com"
+service_account = "sg-tf-sa@tf-bootstrap-f7359af0.iam.gserviceaccount.com"
