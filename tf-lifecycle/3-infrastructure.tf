@@ -20,7 +20,7 @@ variable "projects" {
             },
             {
               name   = "tf-net-ext-sb3"
-              cidr   = "10.100.12.0/24"
+              cidr   = "10.100.13.0/24"
               region = "europe-west2"
             }
           ]
@@ -41,10 +41,10 @@ variable "projects" {
           ]
       }]
     }
-    "network_dev" = {
-      project_name = "tf-net-dev-1"
-      folder_name  = "tf-networking"
-    }
+    # "network_dev" = {
+    #   project_name = "tf-net-dev-1"
+    #   folder_name  = "tf-networking"
+    # }
     # "chatbot_a_prod" = {
     #   project_name = "tf-chatbot-a-prod"
     #   folder_name  = "tf-dept-a"
@@ -106,7 +106,7 @@ locals {
       for subnet in networks.subnet : {
         network_name = networks.name,
         cidr = subnet.cidr
-        subnet_name = subnet.name
+        subnet_name = "${subnet.name}-${subnet.region}"
         region = subnet.region
         }
         ]

@@ -5,6 +5,7 @@ variable "org_iam_roles" {
     "roles/orgpolicy.policyAdmin",
     "roles/resourcemanager.projectCreator",
     "roles/resourcemanager.folderCreator",
+    "roles/compute.xpnAdmin"
   ]
 }
 
